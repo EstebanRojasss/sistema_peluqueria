@@ -1,1 +1,1 @@
-# sistema_peluqueria
+# Sistema peluquería
