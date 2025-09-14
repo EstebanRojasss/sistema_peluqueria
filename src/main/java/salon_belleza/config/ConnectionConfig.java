@@ -1,7 +1,6 @@
 package salon_belleza.config;
 
 import java.io.InputStream;
-import java.sql.SQLException;
 import java.util.Properties;
 
 public class ConnectionConfig {
@@ -11,7 +10,7 @@ public class ConnectionConfig {
     static {
         try(InputStream inputStream = ConnectionConfig.class
                 .getClassLoader()
-                .getResourceAsStream("db.properties")){
+                .getResourceAsStream("salon_belleza/app/db.properties")){
 
             if(inputStream == null){
                 throw new RuntimeException("No se encontró db.properties");
