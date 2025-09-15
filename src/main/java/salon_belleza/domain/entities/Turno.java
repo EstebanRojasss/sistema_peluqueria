@@ -1,53 +1,50 @@
 package salon_belleza.domain.entities;
 
 import java.time.LocalDateTime;
+import java.util.Set;
 
 public class Turno {
-    private final Integer turnoId;
-    private LocalDateTime fechaHora;
-    private String empleadoID;
-    private String servicioID;
+    private final Integer turnoID;
+    private final LocalDateTime fechaHora;
+    private final Cliente clienteID;
+    private final Empleado empleadoID;
+    private final Set<DetalleTurno>serviciosHechos;
 
 
-    public Turno(LocalDateTime fechaHora, String empleadoID, String servicioID){
-        this.turnoId = null;
+    public Turno(LocalDateTime fechaHora, Empleado empleadoID,Cliente clienteID, Set<DetalleTurno>serviciosHechos){
+        this.turnoID = null;
         this.fechaHora = fechaHora;
+        this.clienteID = clienteID;
         this.empleadoID = empleadoID;
-        this.servicioID = servicioID;
+        this.serviciosHechos= serviciosHechos;
     }
 
-    public Turno(Integer turno_id, LocalDateTime fechaHora, String empleadoID, String servicioID){
-        this.turnoId = turno_id;
-        this.fechaHora = fechaHora;
-        this.empleadoID = empleadoID;
-        this.servicioID = servicioID;
+    public Set<DetalleTurno> getServiciosHechos() {
+        return serviciosHechos;
     }
 
-    public Integer getTurnoId() {
-        return turnoId;
+    public Turno(Integer turno_id, LocalDateTime fechaHora, Empleado empleadoID, Cliente clienteID, Set<DetalleTurno> serviciosHechos){
+        this.turnoID = turno_id;
+        this.fechaHora = fechaHora;
+        this.clienteID = clienteID;
+        this.empleadoID = empleadoID;
+        this.serviciosHechos = serviciosHechos;
+    }
+
+    public Integer getTurnoID() {
+        return turnoID;
     }
 
     public LocalDateTime getFechaHora() {
         return fechaHora;
     }
 
-    public String getEmpleadoID() {
+    public Cliente getClienteID() {
+        return clienteID;
+    }
+
+    public Empleado getEmpleadoID() {
         return empleadoID;
     }
 
-    public String getServicioID() {
-        return servicioID;
-    }
-
-    public void setFechaHora(LocalDateTime fechaHora) {
-        this.fechaHora = fechaHora;
-    }
-
-    public void setEmpleadoID(String empleadoID) {
-        this.empleadoID = empleadoID;
-    }
-
-    public void setServicioID(String servicioID) {
-        this.servicioID = servicioID;
-    }
 }
