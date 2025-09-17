@@ -33,4 +33,11 @@ public abstract class AbstractDao {
             throw new SQLException("Ocurrio un error con la actualizacion de los datos");
         }
     }
+
+    protected void exeuteDelete(String sql, Object... params) throws SQLException{
+        try(Connection conn = dataSource.getConnection();
+            PreparedStatement ps = conn.prepareStatement(sql)){
+            argumentSetter.create(params).setValues(ps);
+        }
+    }
 }
