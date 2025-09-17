@@ -11,6 +11,10 @@ public class ArgumentPreparedStatementSetter implements PreparedStatementSetter{
         this.params = params;
     }
 
+    public ArgumentPreparedStatementSetter create(Object[] params){
+        return new ArgumentPreparedStatementSetter(params);
+    }
+
     @Override
     public void setValues(PreparedStatement ps)throws SQLException {
         if(params == null) return;
