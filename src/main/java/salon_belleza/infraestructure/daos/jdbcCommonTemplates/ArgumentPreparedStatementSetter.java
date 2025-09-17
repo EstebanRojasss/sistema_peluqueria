@@ -7,7 +7,7 @@ public class ArgumentPreparedStatementSetter implements PreparedStatementSetter{
 
     private final Object[] params;
 
-    public ArgumentPreparedStatementSetter(Object[] params){
+    private ArgumentPreparedStatementSetter(Object... params){
         this.params = params;
     }
 
