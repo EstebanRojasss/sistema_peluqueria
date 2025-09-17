@@ -1,7 +1,12 @@
 package salon_belleza.infraestructure.daos.jdbcCommonTemplates;
 
+import java.math.BigDecimal;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class ArgumentPreparedStatementSetter implements PreparedStatementSetter{
 
