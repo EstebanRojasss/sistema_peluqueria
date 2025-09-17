@@ -5,7 +5,7 @@ import java.sql.SQLException;
 
 public class ArgumentPreparedStatementSetter implements PreparedStatementSetter{
 
-    private Object[] params;
+    private final Object[] params;
 
     public ArgumentPreparedStatementSetter(Object[] params){
         this.params = params;
