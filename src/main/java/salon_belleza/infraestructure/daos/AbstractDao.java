@@ -46,9 +46,9 @@ public abstract class AbstractDao {
         }
     }
 
-    protected final T findByID(String sql, Object... params) throws SQLException{
-        try(Connection conn = dataSource.getConnection();
-        PreparedStatement ps = conn.prepareStatement(sql)){
+    protected final T executeFindByID(String sql, Object... params) throws SQLException {
+        try (Connection conn = dataSource.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
             argumentSetter.create(params).setValues(ps);
 
             ResultSet rs = ps.executeQuery();
@@ -64,7 +64,7 @@ public abstract class AbstractDao {
         return null;
     }
 
-    protected final List<T> findAll(String sql, Object... params) throws SQLException {
+    protected final List<T> executeFindAll(String sql, Object... params) throws SQLException {
         List<T> results = new ArrayList<>();
 
         try (Connection conn = dataSource.getConnection();
