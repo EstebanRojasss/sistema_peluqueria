@@ -40,4 +40,25 @@ public abstract class AbstractDao {
             argumentSetter.create(params).setValues(ps);
         }
     }
+
+    protected final T findByID(String sql, Object... params) throws SQLException{
+        try(Connection conn = dataSource.getConnection();
+        PreparedStatement ps = conn.prepareStatement(sql)){
+            argumentSetter.create(params).setValues(ps);
+
+            ResultSet rs = ps.executeQuery();
+
+          if(rs.next()){
+              return MapResultSetToEntity(rs);
+          }
+
+        }catch (RuntimeException e){
+            throw new SQLException("Ocurrio un error con la obtencion de los datos");
+        }
+
+        return null;
+    }
+
+    protected abstract T MapResultSetToEntity(ResultSet resultSet) throws SQLException;
+
 }
