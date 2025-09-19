@@ -62,6 +62,26 @@ public abstract class AbstractDao {
         return null;
     }
 
+    protected final List<T> findAll(String sql, Object... params) throws SQLException {
+        List<T> results = new ArrayList<>();
+
+        try (Connection conn = dataSource.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            argumentSetter.create(params).setValues(ps);
+            ResultSet rs = ps.executeQuery();
+
+
+            while (rs.next()) {
+                results.add(MapResultSetToEntity(rs));
+            }
+            ;
+        } catch (RuntimeException e) {
+            throw new SQLException("Ocurrio un error con la obtencion de los datos");
+        }
+
+        return results;
+    }
+
     protected abstract T MapResultSetToEntity(ResultSet resultSet) throws SQLException;
 
 }
