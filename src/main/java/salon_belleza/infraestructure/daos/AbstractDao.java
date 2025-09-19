@@ -16,7 +16,7 @@ public abstract class AbstractDao {
         this.dataSource = dataSource;
     }
 
-    protected void executeSave(String sql, Object... params) throws SQLException {
+    protected final void executeSave(String sql, Object... params) throws SQLException {
         try (Connection conn = dataSource.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
             argumentSetter.create(params).setValues(ps);
@@ -25,7 +25,7 @@ public abstract class AbstractDao {
         }
     }
 
-    protected void executeUpdate(String sql, Object... params) throws SQLException{
+    protected final void executeUpdate(String sql, Object... params) throws SQLException{
         try(Connection conn = dataSource.getConnection();
         PreparedStatement ps = conn.prepareStatement(sql)){
             argumentSetter.create(params).setValues(ps);
@@ -34,7 +34,7 @@ public abstract class AbstractDao {
         }
     }
 
-    protected void exeuteDelete(String sql, Object... params) throws SQLException{
+    protected final void exeuteDelete(String sql, Object... params) throws SQLException{
         try(Connection conn = dataSource.getConnection();
             PreparedStatement ps = conn.prepareStatement(sql)){
             argumentSetter.create(params).setValues(ps);
