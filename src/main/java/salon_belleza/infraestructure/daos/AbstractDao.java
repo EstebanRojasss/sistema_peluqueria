@@ -41,6 +41,8 @@ public abstract class AbstractDao {
             PreparedStatement ps = conn.prepareStatement(sql)){
             argumentSetter.create(params).setValues(ps);
             ps.executeUpdate();
+        } catch (RuntimeException e) {
+            throw new SQLException("Ocurrio un error con la eliminacion de los datos");
         }
     }
 
