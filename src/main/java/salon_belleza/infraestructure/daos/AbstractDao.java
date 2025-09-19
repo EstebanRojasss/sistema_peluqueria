@@ -20,6 +20,7 @@ public abstract class AbstractDao {
         try (Connection conn = dataSource.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
             argumentSetter.create(params).setValues(ps);
+            ps.executeUpdate();
         } catch (RuntimeException e) {
             throw new SQLException("Ocurrio un error con la persistencia de los datos");
         }
@@ -29,6 +30,7 @@ public abstract class AbstractDao {
         try(Connection conn = dataSource.getConnection();
         PreparedStatement ps = conn.prepareStatement(sql)){
             argumentSetter.create(params).setValues(ps);
+            ps.executeUpdate();
         }catch (RuntimeException e){
             throw new SQLException("Ocurrio un error con la actualizacion de los datos");
         }
@@ -38,6 +40,7 @@ public abstract class AbstractDao {
         try(Connection conn = dataSource.getConnection();
             PreparedStatement ps = conn.prepareStatement(sql)){
             argumentSetter.create(params).setValues(ps);
+            ps.executeUpdate();
         }
     }
 
