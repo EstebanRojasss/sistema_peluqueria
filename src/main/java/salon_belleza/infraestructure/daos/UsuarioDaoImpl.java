@@ -7,6 +7,8 @@ import salon_belleza.infraestructure.daos.jdbcCommonTemplates.ArgumentPreparedSt
 import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class UsuarioDaoImpl extends AbstractDao<Usuario> implements UsuarioDao {
@@ -69,5 +71,10 @@ public class UsuarioDaoImpl extends AbstractDao<Usuario> implements UsuarioDao {
     @Override
     public void delete(Usuario usuario) {
 
+    }
+
+    @Override
+    public Usuario findByName() {
+        return null;
     }
 }
