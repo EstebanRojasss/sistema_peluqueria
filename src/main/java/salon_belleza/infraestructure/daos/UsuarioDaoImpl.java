@@ -35,8 +35,25 @@ public class UsuarioDaoImpl extends AbstractDao<Usuario> implements UsuarioDao {
     }
 
     @Override
-    public Usuario findAll() {
-        return null;
+    public List<Usuario> findAllAdmins(){
+        try{
+            String sql = """
+                SELECT u.name FROM user
+                INNER JOIN rol_user ru ON u.id_user = ru.user_id
+                INNER JOIN rol r ON r.id_rol = ru.rol_id
+                WHERE r.role_name = ?;
+                """;
+
+            return executeFindAll(sql, "ADMIN");
+        }catch (SQLException e){
+            System.out.println("Ocurrio un error con la obtencion de la lista de administradores" + e.getSQLState());
+        }
+        return new ArrayList<>();
+    }
+
+    @Override
+    public List<Usuario> findAllEmployeers() {
+        return List.of();
     }
 
     @Override
