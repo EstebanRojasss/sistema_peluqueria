@@ -12,7 +12,7 @@ import java.util.List;
 
 public abstract class AbstractDao<T> {
 
-    protected ArgumentPreparedStatementSetter argumentSetter;
+    
     protected DataSource dataSource;
 
     public AbstractDao(DataSource dataSource) {
