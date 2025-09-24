@@ -2,20 +2,18 @@ package salon_belleza.infraestructure.daos;
 
 import salon_belleza.domain.dao.UsuarioDao;
 import salon_belleza.domain.entities.Usuario;
-import salon_belleza.infraestructure.daos.jdbcCommonTemplates.ArgumentPreparedStatementSetter;
 
 import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 
 public class UsuarioDaoImpl extends AbstractDao<Usuario> implements UsuarioDao {
 
 
-    public UsuarioDaoImpl( DataSource dataSource) {
+    public UsuarioDaoImpl(DataSource dataSource) {
         super(dataSource);
     }
 
@@ -23,32 +21,31 @@ public class UsuarioDaoImpl extends AbstractDao<Usuario> implements UsuarioDao {
     protected Usuario MapResultSetToEntity(ResultSet resultSet) throws SQLException {
         return new Usuario(
                 resultSet.getString("nombre"),
-                        resultSet.getString("contrasenha"));
+                resultSet.getString("contrasenha"));
     }
 
 
     @Override
     public void save(Usuario usuario) {
-        try{
+        try {
             String sql = "INSERT INTO user (id_user, name, password) VALUES(?, ?, ?)";
             executeSave(sql, usuario.getId(), usuario.getNombre(), usuario.getContrasenha());
-        }catch (SQLException e){
-            System.out.println("Ocurrio un error con la persistencia del usuario" + e.getSQLState());
+        } catch (SQLException e) {
+            System.out.println("Ocurrio un error con la persistencia del usuario " + e.getSQLState());
         }
     }
 
     @Override
-    public Set<Usuario> findAllAdmins(){
-        try{
+    public Set<Usuario> findAllAdmins() {
+        try {
             String sql = """
-                SELECT u.name FROM user
-                INNER JOIN rol_user ru ON u.id_user = ru.user_id
-                INNER JOIN rol r ON r.id_rol = ru.rol_id
-                WHERE r.role_name = ?;
-                """;
-
+                    SELECT u.name FROM user u
+                    INNER JOIN rol_user ru ON u.id_user = ru.user_id\s
+                    INNER JOIN rol r ON r.id_rol = ru.rol_id
+                    WHERE r.role_name = ?
+                    """;
             return executeFindAll(sql, "ADMIN");
-        }catch (SQLException e){
+        } catch (SQLException e) {
             System.out.println("Ocurrio un error con la obtencion de la lista de administradores" + e.getSQLState());
         }
         return new HashSet<>();
@@ -58,11 +55,11 @@ public class UsuarioDaoImpl extends AbstractDao<Usuario> implements UsuarioDao {
     public Set<Usuario> findAllEmployeers() {
         try {
             String sql = """
-                     SELECT u.name FROM user u\s
-                     INNER JOIN rol_user ru ON u.id_user = ru.user_id\s
-                     INNER JOIN rol r ON r.id_rol = ru.rol_id
-                     WHERE r.role_name = ?
-                     """;
+                    SELECT u.name FROM user u\s
+                    INNER JOIN rol_user ru ON u.id_user = ru.user_id\s
+                    INNER JOIN rol r ON r.id_rol = ru.rol_id
+                    WHERE r.role_name = ?
+                    """;
             return executeFindAll(sql, "EMPLOYEE");
         } catch (SQLException e) {
             System.out.println("Ocurrio un error con la obtencion de la lista de empleados " + e.getSQLState());
@@ -85,33 +82,39 @@ public class UsuarioDaoImpl extends AbstractDao<Usuario> implements UsuarioDao {
 
     @Override
     public void update(Usuario usuario) {
-        try{
+        try {
             String sql = """
                     UPDATE user u\s
                     SET name = ?
                     WHERE id_user = ?
                     """;
-                    executeUpdate(sql, usuario.getId());
-        }catch (SQLException e){
+            executeUpdate(sql, usuario.getId());
+        } catch (SQLException e) {
             System.out.println("Ocurrio un error con la actualizacion de los datos" + e.getSQLState());
         }
     }
 
     @Override
     public void delete(Usuario usuario) {
-        try{
+        try {
             String sql = """
                     DELETE FROM user WHERE id_user = ?
                     """;
             exeuteDelete(sql, usuario.getId());
-        }catch (SQLException e){
+        } catch (SQLException e) {
             System.out.println("Ocurrio un error con la eliminacicon del usuario " + e.getSQLState());
         }
 
     }
 
     @Override
-    public Usuario findByName() {
+    public Usuario findByName(String name) {
+        try {
+            String sql = "SELECT u.name FROM user u WHERE u.name = ?";
+            return executeFindByName(sql, name);
+        } catch (SQLException e) {
+            System.out.println("Ocurrio un error obteniendo usuario" + e.getSQLState());
+        }
         return null;
     }
 }
