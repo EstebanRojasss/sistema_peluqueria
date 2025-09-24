@@ -73,7 +73,7 @@ public class UsuarioDaoImpl extends AbstractDao<Usuario> implements UsuarioDao {
             String sql = """
                     SELECT * FROM user u WHERE u.id_user = ?
                     """;
-            executeFindByID(sql, id);
+            return executeFindByID(sql, id);
         } catch (SQLException e) {
             System.out.println("Ocurrio un error con la obtención del usuario " + e.getSQLState());
         }
