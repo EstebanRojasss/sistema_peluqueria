@@ -60,7 +60,15 @@ public class UsuarioDaoImpl extends AbstractDao<Usuario> implements UsuarioDao {
     }
 
     @Override
-    public Usuario findById() {
+    public Usuario findById(String id) {
+        try {
+            String sql = """
+                    SELECT * FROM user u WHERE u.id_user = ?
+                    """;
+            executeFindByID(sql, id);
+        } catch (SQLException e) {
+            System.out.println("Ocurrio un error con la obtención del usuario " + e.getSQLState());
+        }
         return null;
     }
 
