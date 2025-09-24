@@ -8,9 +8,9 @@ public interface UsuarioDao {
 
     void save(Usuario usuario);
 
-    List<Usuario> findAllAdmins();
+    Set<Usuario> findAllAdmins();
 
-    List<Usuario>findAllEmployeers();
+    Set<Usuario>findAllEmployeers();
 
     Usuario findById();
 
