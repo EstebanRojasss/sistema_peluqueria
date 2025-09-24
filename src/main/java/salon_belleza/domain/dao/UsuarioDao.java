@@ -18,5 +18,5 @@ public interface UsuarioDao {
 
     void delete(Usuario usuario);
 
-    Usuario findByName();
+    Usuario findByName(String name);
 }
