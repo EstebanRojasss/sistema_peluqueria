@@ -67,8 +67,8 @@ public abstract class AbstractDao<T> {
         return null;
     }
 
-    protected final List<T> executeFindAll(String sql, Object... params) throws SQLException {
-        List<T> results = new ArrayList<>();
+    protected final Set<T> executeFindAll(String sql, Object... params) throws SQLException {
+        Set<T> results = new HashSet<>();
 
         try (Connection conn = dataSource.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
