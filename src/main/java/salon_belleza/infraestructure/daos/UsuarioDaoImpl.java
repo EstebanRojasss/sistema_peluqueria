@@ -7,8 +7,9 @@ import salon_belleza.infraestructure.daos.jdbcCommonTemplates.ArgumentPreparedSt
 import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 
 public class UsuarioDaoImpl extends AbstractDao<Usuario> implements UsuarioDao {
@@ -37,7 +38,7 @@ public class UsuarioDaoImpl extends AbstractDao<Usuario> implements UsuarioDao {
     }
 
     @Override
-    public List<Usuario> findAllAdmins(){
+    public Set<Usuario> findAllAdmins(){
         try{
             String sql = """
                 SELECT u.name FROM user
@@ -50,11 +51,11 @@ public class UsuarioDaoImpl extends AbstractDao<Usuario> implements UsuarioDao {
         }catch (SQLException e){
             System.out.println("Ocurrio un error con la obtencion de la lista de administradores" + e.getSQLState());
         }
-        return new ArrayList<>();
+        return new HashSet<>();
     }
 
     @Override
-    public List<Usuario> findAllEmployeers() {
+    public Set<Usuario> findAllEmployeers() {
         return List.of();
     }
 
