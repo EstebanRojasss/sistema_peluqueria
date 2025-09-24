@@ -74,7 +74,16 @@ public class UsuarioDaoImpl extends AbstractDao<Usuario> implements UsuarioDao {
 
     @Override
     public void update(Usuario usuario) {
-
+        try{
+            String sql = """
+                    UPDATE user u\s
+                    SET name = ?
+                    WHERE id_user = ?
+                    """;
+                    executeUpdate(sql, usuario.getId());
+        }catch (SQLException e){
+            System.out.println("Ocurrio un error con la actualizacion de los datos" + e.getSQLState());
+        }
     }
 
     @Override
