@@ -56,7 +56,18 @@ public class UsuarioDaoImpl extends AbstractDao<Usuario> implements UsuarioDao {
 
     @Override
     public Set<Usuario> findAllEmployeers() {
-        return List.of();
+        try {
+            String sql = """
+                     SELECT u.name FROM user u\s
+                     INNER JOIN rol_user ru ON u.id_user = ru.user_id\s
+                     INNER JOIN rol r ON r.id_rol = ru.rol_id
+                     WHERE r.role_name = ?
+                     """;
+            return executeFindAll(sql, "EMPLOYEE");
+        } catch (SQLException e) {
+            System.out.println("Ocurrio un error con la obtencion de la lista de empleados " + e.getSQLState());
+        }
+        return new HashSet<>();
     }
 
     @Override
