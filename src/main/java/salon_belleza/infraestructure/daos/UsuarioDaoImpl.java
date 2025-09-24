@@ -29,7 +29,7 @@ public class UsuarioDaoImpl extends AbstractDao<Usuario> implements UsuarioDao {
     @Override
     public void save(Usuario usuario) {
         try{
-            String sql = "INSERT INTO usuario (id, nombre, contrasenha) VALUES(?, ?, ?)";
+            String sql = "INSERT INTO user (id_user, name, password) VALUES(?, ?, ?)";
             executeSave(sql, usuario.getId(), usuario.getNombre(), usuario.getContrasenha());
         }catch (SQLException e){
             System.out.println("Ocurrio un error con la persistencia del usuario" + e.getSQLState());
