@@ -14,8 +14,8 @@ import java.util.List;
 public class UsuarioDaoImpl extends AbstractDao<Usuario> implements UsuarioDao {
 
 
-    public UsuarioDaoImpl(ArgumentPreparedStatementSetter argumentSetter, DataSource dataSource) {
-        super(argumentSetter, dataSource);
+    public UsuarioDaoImpl( DataSource dataSource) {
+        super(dataSource);
     }
 
     @Override
