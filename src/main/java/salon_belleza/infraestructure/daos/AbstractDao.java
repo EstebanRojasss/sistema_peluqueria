@@ -22,7 +22,7 @@ public abstract class AbstractDao<T> {
     protected final void executeSave(String sql, Object... params) throws SQLException {
         try (Connection conn = dataSource.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
-            argumentSetter.create(params).setValues(ps);
+            ArgumentPreparedStatementSetter.create(params).setValues(ps);
             ps.executeUpdate();
         } catch (RuntimeException e) {
             throw new SQLException("Ocurrio un error con la persistencia de los datos");
@@ -32,7 +32,7 @@ public abstract class AbstractDao<T> {
     protected final void executeUpdate(String sql, Object... params) throws SQLException {
         try (Connection conn = dataSource.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
-            argumentSetter.create(params).setValues(ps);
+            ArgumentPreparedStatementSetter.create(params).setValues(ps);
             ps.executeUpdate();
         } catch (RuntimeException e) {
             throw new SQLException("Ocurrio un error con la actualizacion de los datos");
@@ -42,7 +42,7 @@ public abstract class AbstractDao<T> {
     protected final void exeuteDelete(String sql, Object... params) throws SQLException {
         try (Connection conn = dataSource.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
-            argumentSetter.create(params).setValues(ps);
+            ArgumentPreparedStatementSetter.create(params).setValues(ps);
             ps.executeUpdate();
         } catch (RuntimeException e) {
             throw new SQLException("Ocurrio un error con la eliminacion de los datos");
@@ -52,7 +52,7 @@ public abstract class AbstractDao<T> {
     protected final T executeFindByID(String sql, Object... params) throws SQLException {
         try (Connection conn = dataSource.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
-            argumentSetter.create(params).setValues(ps);
+            ArgumentPreparedStatementSetter.create(params).setValues(ps);
 
             ResultSet rs = ps.executeQuery();
 
@@ -72,7 +72,7 @@ public abstract class AbstractDao<T> {
 
         try (Connection conn = dataSource.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
-            argumentSetter.create(params).setValues(ps);
+            ArgumentPreparedStatementSetter.create(params).setValues(ps);
             ResultSet rs = ps.executeQuery();
 
 
@@ -89,7 +89,7 @@ public abstract class AbstractDao<T> {
     protected final T executeFindByName(String sql, Object...params) throws SQLException{
         try(Connection conn = dataSource.getConnection();
         PreparedStatement ps = conn.prepareStatement(sql)){
-            argumentSetter.create(params).setValues(ps);
+            ArgumentPreparedStatementSetter.create(params).setValues(ps);
 
             ResultSet rs = ps.executeQuery();
             if(rs.next()){
