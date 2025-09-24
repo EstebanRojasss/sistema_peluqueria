@@ -45,7 +45,9 @@ public class UsuarioDaoTest {
         // Act
         usuarioDAO.save(usuario);
 
-        assertUsuarioExists(usuario.getId(), "TestUser");
+        String expected = "TestUser";
+
+        assertUsuarioExists(usuario.getId(), expected);
     }
 
     private void assertUsuarioExists(String id, String expectedName) throws SQLException {
