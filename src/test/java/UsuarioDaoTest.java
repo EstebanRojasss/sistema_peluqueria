@@ -10,10 +10,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.UUID;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class UsuarioDaoTest {
     private HikariDataSource dataSource;
@@ -48,6 +46,28 @@ public class UsuarioDaoTest {
         String expected = "TestUser";
 
         assertUsuarioExists(usuario.getId(), expected);
+    }
+
+    @Test
+    void testFinalAllAdmins() throws SQLException {
+        String name = "esteban";
+        String userType = "ADMIN";
+        assertAdminsExists(userType, name);
+    }
+
+
+    private void assertAdminsExists(String userType, String expectedAdminName) throws SQLException {
+        try (Connection conn = dataSource.getConnection(); PreparedStatement ps = conn.prepareStatement("""
+                SELECT u.name FROM user u
+                    INNER JOIN rol_user ru ON u.id_user = ru.user_id\s
+                    INNER JOIN rol r ON r.id_rol = ru.rol_id
+                    WHERE r.role_name = ?
+                """)) {
+            ps.setString(1, userType);
+            ResultSet rs = ps.executeQuery();
+            assertTrue(rs.next());
+            assertEquals(expectedAdminName, rs.getString("name"));
+        }
     }
 
     private void assertUsuarioExists(String id, String expectedName) throws SQLException {
