@@ -15,8 +15,7 @@ public abstract class AbstractDao<T> {
     protected ArgumentPreparedStatementSetter argumentSetter;
     protected DataSource dataSource;
 
-    public AbstractDao(ArgumentPreparedStatementSetter argumentSetter, DataSource dataSource) {
-        this.argumentSetter = argumentSetter;
+    public AbstractDao(DataSource dataSource) {
         this.dataSource = dataSource;
     }
 
