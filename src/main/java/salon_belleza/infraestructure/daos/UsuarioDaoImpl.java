@@ -88,6 +88,14 @@ public class UsuarioDaoImpl extends AbstractDao<Usuario> implements UsuarioDao {
 
     @Override
     public void delete(Usuario usuario) {
+        try{
+            String sql = """
+                    DELETE FROM user WHERE id_user = ?
+                    """;
+            exeuteDelete(sql, usuario.getId());
+        }catch (SQLException e){
+            System.out.println("Ocurrio un error con la eliminacicon del usuario " + e.getSQLState());
+        }
 
     }
 
