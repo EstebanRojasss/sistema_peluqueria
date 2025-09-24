@@ -12,7 +12,7 @@ public interface UsuarioDao {
 
     Set<Usuario>findAllEmployeers();
 
-    Usuario findById();
+    Usuario findById(String id);
 
     void update(Usuario usuario);
 
