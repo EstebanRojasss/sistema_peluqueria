@@ -16,7 +16,7 @@ public class ArgumentPreparedStatementSetter implements PreparedStatementSetter{
         this.params = params;
     }
 
-    public ArgumentPreparedStatementSetter create(Object[] params){
+    public static ArgumentPreparedStatementSetter create(Object[] params){
         return new ArgumentPreparedStatementSetter(params);
     }
 
