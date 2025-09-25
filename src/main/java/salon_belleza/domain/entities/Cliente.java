@@ -8,16 +8,16 @@ public class Cliente {
     private final String id;
     private String nombre;
     private String telefono;
-    private String email;
+    private String dni;
     private LocalDate fecha_regsitro;
 
 
 
-    public Cliente(String nombre, String telefono, String email, LocalDate fecha_registro){
+    public Cliente(String nombre, String telefono, String dni, LocalDate fecha_registro){
         UUID uuid = UUID.randomUUID();
         this.id = uuid.toString();
         this.telefono = telefono;
-        this.email = email;
+        this.dni = dni;
         this.fecha_regsitro = fecha_registro;
     }
 
@@ -29,8 +29,8 @@ public class Cliente {
         this.telefono = telefono;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setDni(String dni) {
+        this.dni = dni;
     }
 
     public void setFecha_regsitro(LocalDate fecha_regsitro) {
@@ -45,8 +45,8 @@ public class Cliente {
         return telefono;
     }
 
-    public String getEmail() {
-        return email;
+    public String getDni() {
+        return dni;
     }
 
     public LocalDate getFecha_regsitro() {
