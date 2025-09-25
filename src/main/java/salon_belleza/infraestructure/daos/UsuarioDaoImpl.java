@@ -39,7 +39,7 @@ public class UsuarioDaoImpl extends AbstractDao<Usuario> implements UsuarioDao {
     public Set<Usuario> findAllAdmins() {
         try {
             String sql = """
-                    SELECT u.name FROM user u
+                    SELECT u.name, u.password FROM user u
                     INNER JOIN rol_user ru ON u.id_user = ru.user_id\s
                     INNER JOIN rol r ON r.id_rol = ru.rol_id
                     WHERE r.role_name = ?
@@ -55,7 +55,7 @@ public class UsuarioDaoImpl extends AbstractDao<Usuario> implements UsuarioDao {
     public Set<Usuario> findAllEmployeers() {
         try {
             String sql = """
-                    SELECT u.name FROM user u\s
+                    SELECT u.name, u,password FROM user u\s
                     INNER JOIN rol_user ru ON u.id_user = ru.user_id\s
                     INNER JOIN rol r ON r.id_rol = ru.rol_id
                     WHERE r.role_name = ?
@@ -71,7 +71,7 @@ public class UsuarioDaoImpl extends AbstractDao<Usuario> implements UsuarioDao {
     public Usuario findById(String id) {
         try {
             String sql = """
-                    SELECT * FROM user u WHERE u.id_user = ?
+                    SELECT u.name, u.password FROM user u WHERE u.id_user = ?
                     """;
             return executeFindByID(sql, id);
         } catch (SQLException e) {
