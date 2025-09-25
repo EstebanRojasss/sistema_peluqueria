@@ -7,13 +7,15 @@ public class Empleado {
     private final String id;
     private String nombre;
     private String telefono;
+    private Usuario usuario;
 
 
-    public Empleado(String nombre, String telefono){
+    public Empleado(String nombre, String telefono, Usuario usuario) {
         UUID uuid = UUID.randomUUID();
         this.id = uuid.toString();
         this.nombre = nombre;
         this.telefono = telefono;
+        this.usuario = usuario;
     }
 
     public String getId(){
