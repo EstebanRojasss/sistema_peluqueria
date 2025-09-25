@@ -24,8 +24,8 @@ public abstract class AbstractDao<T> {
              PreparedStatement ps = conn.prepareStatement(sql)) {
             ArgumentPreparedStatementSetter.create(params).setValues(ps);
             ps.executeUpdate();
-        } catch (RuntimeException e) {
-            throw new SQLException("Ocurrio un error con la persistencia de los datos");
+        } catch (SQLException e) {
+            throw new DatabaseException("Ocurrio un error al guardar " + e);
         }
     }
 
@@ -34,8 +34,8 @@ public abstract class AbstractDao<T> {
              PreparedStatement ps = conn.prepareStatement(sql)) {
             ArgumentPreparedStatementSetter.create(params).setValues(ps);
             ps.executeUpdate();
-        } catch (RuntimeException e) {
-            throw new SQLException("Ocurrio un error con la actualizacion de los datos");
+        } catch (SQLException e) {
+            throw new DatabaseException("Ocurrio un error con la actualizacion de los datos " + e);
         }
     }
 
@@ -44,8 +44,8 @@ public abstract class AbstractDao<T> {
              PreparedStatement ps = conn.prepareStatement(sql)) {
             ArgumentPreparedStatementSetter.create(params).setValues(ps);
             ps.executeUpdate();
-        } catch (RuntimeException e) {
-            throw new SQLException("Ocurrio un error con la eliminacion de los datos");
+        } catch (SQLException e) {
+            throw new DatabaseException("Ocurrio un error con la eliminacion de los datos "+e);
         }
     }
 
@@ -60,8 +60,8 @@ public abstract class AbstractDao<T> {
                 return MapResultSetToEntity(rs);
             }
 
-        } catch (RuntimeException e) {
-            throw new SQLException("Ocurrio un error con la obtencion de los datos");
+        } catch (SQLException e) {
+            throw new DatabaseException("Ocurrio un error con la obtencion de los datos " + e);
         }
 
         return null;
@@ -79,8 +79,8 @@ public abstract class AbstractDao<T> {
             while (rs.next()) {
                 results.add(MapResultSetToEntity(rs));
             }
-        } catch (RuntimeException e) {
-            throw new SQLException("Ocurrio un error con la obtencion de los datos");
+        } catch (SQLException e) {
+            throw new DatabaseException("Ocurrio un error con la obtencion de los datos " + e);
         }
 
         return results;
@@ -96,8 +96,8 @@ public abstract class AbstractDao<T> {
                 return MapResultSetToEntity(rs);
             }
 
-        }catch (RuntimeException e){
-            throw new SQLException("Ocurrio un error con la obtencion de los datos");
+        }catch (SQLException e){
+            throw new DatabaseException("Ocurrio un error con la obtencion de los datos " + e);
         }
         return null;
     }
