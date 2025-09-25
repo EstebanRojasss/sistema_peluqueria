@@ -18,35 +18,20 @@ public class ClienteDaoImpl extends AbstractDao<Cliente> implements ClienteDao {
 
     @Override
     public void saveClient(Cliente cliente) {
-        try {
             String sql = "INSERT INTO cliente(nombre,telefono,fecha_registro,dni) VALUES(?,?,?,?)";
             executeSave(sql, cliente.getNombre(), cliente.getTelefono(), cliente.getFecha_regsitro(), cliente.getDni());
-        } catch (SQLException e) {
-            System.out.println("Ocurrio un error con la persistencia de los datos del cliente." + e.getSQLState());
-        }
     }
 
     @Override
     public Cliente findClientByName(String name) {
-        try{
             String sql = "SELECT nombre, telefono, fecha_registro, dni FROM cliente c WHERE c.nombre = ?";
             return executeFindByName(sql, name);
-        }catch (SQLException e){
-            System.out.println("Ocurrio un error con la obtencion de los datos del cliente"+ e.getSQLState());
-        }
-        return null;
     }
 
     @Override
     public Cliente findClientByDni(String dni) {
-        try{
             String sql = "SELECT nombre, telefono, fecha_registro, dni FROM cliente c WHERE c.dni = ?";
             return executeFindByID(sql, dni); // El metodo findById está siendo reutilizado para obtener un usuario por su DNI
-        }catch (SQLException e){
-            System.out.println("Ocurrio un error con la obtencion de los datos del cliente" + e.getSQLState());
-        }
-
-        return null;
     }
 
     @Override
