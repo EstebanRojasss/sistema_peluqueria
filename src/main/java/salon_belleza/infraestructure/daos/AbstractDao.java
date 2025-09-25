@@ -19,7 +19,7 @@ public abstract class AbstractDao<T> {
         this.dataSource = dataSource;
     }
 
-    protected final void executeSave(String sql, Object... params) throws SQLException {
+    protected final void executeSave(String sql, Object... params) {
         try (Connection conn = dataSource.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
             ArgumentPreparedStatementSetter.create(params).setValues(ps);
@@ -29,7 +29,7 @@ public abstract class AbstractDao<T> {
         }
     }
 
-    protected final void executeUpdate(String sql, Object... params) throws SQLException {
+    protected final void executeUpdate(String sql, Object... params)  {
         try (Connection conn = dataSource.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
             ArgumentPreparedStatementSetter.create(params).setValues(ps);
@@ -39,7 +39,7 @@ public abstract class AbstractDao<T> {
         }
     }
 
-    protected final void exeuteDelete(String sql, Object... params) throws SQLException {
+    protected final void exeuteDelete(String sql, Object... params)  {
         try (Connection conn = dataSource.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
             ArgumentPreparedStatementSetter.create(params).setValues(ps);
@@ -49,7 +49,7 @@ public abstract class AbstractDao<T> {
         }
     }
 
-    protected final T executeFindByID(String sql, Object... params) throws SQLException {
+    protected final T executeFindByID(String sql, Object... params) {
         try (Connection conn = dataSource.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
             ArgumentPreparedStatementSetter.create(params).setValues(ps);
@@ -67,7 +67,7 @@ public abstract class AbstractDao<T> {
         return null;
     }
 
-    protected final Set<T> executeFindAll(String sql, Object... params) throws SQLException {
+    protected final Set<T> executeFindAll(String sql, Object... params) {
         Set<T> results = new HashSet<>();
 
         try (Connection conn = dataSource.getConnection();
@@ -86,7 +86,7 @@ public abstract class AbstractDao<T> {
         return results;
     }
 
-    protected final T executeFindByName(String sql, Object...params) throws SQLException{
+    protected final T executeFindByName(String sql, Object...params) {
         try(Connection conn = dataSource.getConnection();
         PreparedStatement ps = conn.prepareStatement(sql)){
             ArgumentPreparedStatementSetter.create(params).setValues(ps);
