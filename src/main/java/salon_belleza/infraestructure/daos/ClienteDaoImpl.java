@@ -47,8 +47,9 @@ public class ClienteDaoImpl extends AbstractDao<Cliente> implements ClienteDao {
     }
 
     @Override
-    public void deleteClienteByName(String name) {
-
+    public void deleteClienteByName(String nombre) {
+        String sql = "DELETE FROM cliente WHERE nombre = ?";
+        executeDelete(sql, nombre);
     }
 
     @Override
