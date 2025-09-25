@@ -58,8 +58,15 @@ public class ClienteDaoImpl extends AbstractDao<Cliente> implements ClienteDao {
     }
 
     @Override
-    public void updateClienteByName(String name) {
-
+    public void updateClienteByName(String nombre, Cliente cliente) {
+        String sql = """
+                 UPDATE cliente SET\s
+                 nombre = ?,
+                 telefono = ?,
+                 fecha_registro = ?,
+                 dni = ? WHERE nombre = ?
+                \s""";
+        executeUpdate(sql, nombre);
     }
 
     @Override
