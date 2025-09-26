@@ -18,8 +18,8 @@ public class ClienteDaoImpl extends AbstractDao<Cliente> implements ClienteDao {
 
     @Override
     public void saveClient(Cliente cliente) {
-            String sql = "INSERT INTO cliente(nombre,telefono,fecha_registro,dni) VALUES(?,?,?,?)";
-            executeSave(sql, cliente.getNombre(), cliente.getTelefono(), cliente.getFecha_regsitro(), cliente.getDni());
+            String sql = "INSERT INTO cliente(id_cliente,nombre,telefono,fecha_registro,dni) VALUES(?,?,?,?,?)";
+            executeSave(sql, cliente.getId(),cliente.getNombre(), cliente.getTelefono(), cliente.getFecha_regsitro(), cliente.getDni());
     }
 
     @Override
