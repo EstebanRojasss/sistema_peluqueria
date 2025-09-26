@@ -6,7 +6,7 @@ import java.util.Set;
 
 public interface ClienteDao {
     void saveClient(Cliente cliente);
-    Cliente findClientByName(String nombre);
+    List<Cliente> findClientByName(String nombre);
     Cliente findClientByDni(String cliente);
     Cliente findClientById(String id);
     void deleteClienteById(Cliente cliente);

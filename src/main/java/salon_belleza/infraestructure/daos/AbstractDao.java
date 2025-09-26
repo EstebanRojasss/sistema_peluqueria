@@ -86,20 +86,22 @@ public abstract class AbstractDao<T> {
         return results;
     }
 
-    protected final T executeFindByName(String sql, Object...params) {
+    protected final List<T> executeFindByName(String sql, Object...params) {
+        List<T> results = new ArrayList<>();
+
         try(Connection conn = dataSource.getConnection();
         PreparedStatement ps = conn.prepareStatement(sql)){
             ArgumentPreparedStatementSetter.create(params).setValues(ps);
 
             ResultSet rs = ps.executeQuery();
-            if(rs.next()){
-                return MapResultSetToEntity(rs);
+            while(rs.next()){
+                results.add(MapResultSetToEntity(rs));
             }
 
         }catch (SQLException e){
             throw new DatabaseException("Ocurrio un error con la obtencion de los datos " + e);
         }
-        return null;
+        return results;
     }
 
     protected abstract T MapResultSetToEntity(ResultSet resultSet) throws SQLException;
