@@ -15,6 +15,7 @@ public class Cliente {
 
     public Cliente(String nombre, String telefono,LocalDate fecha_registro,String dni){
         UUID uuid = UUID.randomUUID();
+        this.nombre = nombre;
         this.id = uuid.toString();
         this.telefono = telefono;
         this.fecha_regsitro = fecha_registro;
