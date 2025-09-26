@@ -75,7 +75,12 @@ public class ClienteDaoImpl extends AbstractDao<Cliente> implements ClienteDao {
     }
 
     @Override
-    protected Cliente MapResultSetToEntity(ResultSet resultSet) throws SQLException {
-        return null;
+    protected Cliente MapResultSetToEntity(ResultSet rs) throws SQLException {
+        return new Cliente(
+                rs.getString("nombre"),
+                rs.getString("telefono"),
+                rs.getDate("fecha_registro").toLocalDate(),
+                rs.getString("dni")
+                );
     }
 }
