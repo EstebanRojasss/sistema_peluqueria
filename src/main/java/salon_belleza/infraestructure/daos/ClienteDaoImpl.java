@@ -70,6 +70,23 @@ public class ClienteDaoImpl extends AbstractDao<Cliente> implements ClienteDao {
     }
 
     @Override
+    public void updateClienteByID(Cliente cliente) {
+        String sql = """
+                UPDATE cliente SET\s
+                 nombre = ?,
+                 telefono = ?,
+                 fecha_registro = ?,
+                 dni = ? WHERE nombre = ?
+                \s""";
+        executeUpdate(sql,
+                cliente.getNombre(),
+                cliente.getTelefono(),
+                cliente.getFecha_regsitro(),
+                cliente.getDni()
+        );
+    }
+
+    @Override
     public Set<Cliente> findAllClients() {
         String sql = "SELECT nombre, telefono, fecha_registro, dni FROM cliente";
         return executeFindAll(sql);
