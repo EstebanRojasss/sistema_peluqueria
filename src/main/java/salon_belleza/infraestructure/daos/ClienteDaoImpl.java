@@ -23,9 +23,9 @@ public class ClienteDaoImpl extends AbstractDao<Cliente> implements ClienteDao {
     }
 
     @Override
-    public Cliente findClientByName(String name) {
+    public List<Cliente> findClientByName(String nombre) {
             String sql = "SELECT nombre, telefono, fecha_registro, dni FROM cliente c WHERE c.nombre = ?";
-            return executeFindByName(sql, name);
+            return executeFindByName(sql, nombre);
     }
 
     @Override

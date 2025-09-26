@@ -2,6 +2,7 @@ package salon_belleza.domain.dao;
 
 import salon_belleza.domain.entities.Cliente;
 
+import java.util.List;
 import java.util.Set;
 
 public interface ClienteDao {

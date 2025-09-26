@@ -2,6 +2,7 @@ package salon_belleza.domain.dao;
 
 import salon_belleza.domain.entities.Usuario;
 
+import java.util.List;
 import java.util.Set;
 
 public interface UsuarioDao {
@@ -18,5 +19,5 @@ public interface UsuarioDao {
 
     void delete(Usuario usuario);
 
-    Usuario findByName(String name);
+    List<Usuario> findByName(String name);
 }
