@@ -4,6 +4,6 @@ public interface LoginService {
 
     void encryptPasswd(String passwd);
 
-    void checkPasswd(String textPlane, String passwd);
+    boolean checkPasswd(String textPlane, String passwd);
 
 }
