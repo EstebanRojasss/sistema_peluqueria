@@ -9,7 +9,7 @@ public class LoginServiceImpl implements LoginService  {
 
     private LoginServiceImpl(){}
 
-    public LoginServiceImpl getInstance(){
+    public static LoginServiceImpl getInstance(){
         return INSTANCE;
     }
 
