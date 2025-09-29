@@ -1,15 +1,15 @@
 package salon_belleza.infraestructure.services;
 
 import org.mindrot.jbcrypt.BCrypt;
-import salon_belleza.domain.service.LoginService;
+import salon_belleza.domain.service.AuthService;
 
-public class LoginServiceImpl implements LoginService  {
+public class AuthServiceImpl implements AuthService {
 
-    private static final LoginServiceImpl INSTANCE = new LoginServiceImpl();
+    private static final AuthServiceImpl INSTANCE = new AuthServiceImpl();
 
-    private LoginServiceImpl(){}
+    private AuthServiceImpl(){}
 
-    public static LoginServiceImpl getInstance(){
+    public static AuthServiceImpl getInstance(){
         return INSTANCE;
     }
 

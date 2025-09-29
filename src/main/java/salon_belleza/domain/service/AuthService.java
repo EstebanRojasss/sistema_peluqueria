@@ -1,6 +1,6 @@
 package salon_belleza.domain.service;
 
-public interface LoginService {
+public interface AuthService {
 
     String encryptPasswd(String passwd);
 
