@@ -6,8 +6,13 @@ import salon_belleza.domain.service.LoginService;
 public class LoginServiceImpl implements LoginService  {
 
     @Override
-    public void encryptPasswd(String passwd) {
-        BCrypt.hashpw(passwd, BCrypt.gensalt());
+    public String encryptPasswd(String passwd) {
+        return BCrypt.hashpw(passwd, BCrypt.gensalt());
+    }
+
+    @Override
+    public boolean checkPasswd(String textPlane, String passwd) {
+        return BCrypt.checkpw(textPlane, passwd);
     }
 
 }
