@@ -20,6 +20,10 @@ public class AuthServiceImpl implements AuthService {
     }
 
     public static AuthServiceImpl getInstance(){
+        if(INSTANCE == null){
+            throw new IllegalStateException("AuthService no se ha inicializado");
+        }
+
         return INSTANCE;
     }
 
