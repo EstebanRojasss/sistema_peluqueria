@@ -20,4 +20,6 @@ public interface UsuarioDao {
     void delete(Usuario usuario);
 
     List<Usuario> findByName(String name);
+
+    Usuario findAdmin(String rol);
 }

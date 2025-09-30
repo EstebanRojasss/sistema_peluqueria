@@ -85,4 +85,14 @@ public class UsuarioDaoImpl extends AbstractDao<Usuario> implements UsuarioDao {
             String sql = "SELECT u.name FROM user u WHERE u.name = ?";
             return executeFindByName(sql, name);
     }
+
+    @Override
+    public Usuario findAdmin(String rol) {
+        String sql = """
+                SELECT u.id_user, u.name, u.password FROM user u
+                INNER JOIN rol_user ru ON u.id_user = ru.user_id
+                INNER JOIN rol r ON r.id_rol = ru.rol_id
+                WHERE r.role_name = ?""";
+        return executeFindByRole(sql, rol);
+    }
 }
