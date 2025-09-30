@@ -19,9 +19,11 @@ public class UsuarioDaoImpl extends AbstractDao<Usuario> implements UsuarioDao {
 
     @Override
     protected Usuario MapResultSetToEntity(ResultSet resultSet) throws SQLException {
-        return new Usuario(
+        return Usuario.desdeBD(
+                resultSet.getString("id_user"),
                 resultSet.getString("name"),
-                resultSet.getString("password"));
+                resultSet.getString("password")
+        );
     }
 
 
