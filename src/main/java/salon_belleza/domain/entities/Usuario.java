@@ -8,10 +8,8 @@ public class Usuario {
     private String nombre;
     private String contrasenha;
 
-
-    public Usuario( String nombre, String contrasenha) {
-        UUID id = UUID.randomUUID();
-        this.id = id.toString();
+    private Usuario(String id, String nombre, String contrasenha){
+        this.id = id;
         this.nombre = nombre;
         this.contrasenha = contrasenha;
     }
