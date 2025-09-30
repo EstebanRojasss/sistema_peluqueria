@@ -14,6 +14,15 @@ public class Usuario {
         this.contrasenha = contrasenha;
     }
 
+    public static Usuario crearNuevoUsuario(String nombre, String contrasenha){
+        return new Usuario(UUID.randomUUID().toString(),nombre, contrasenha);
+    }
+
+    public static Usuario desdeBD(String id, String nombre, String contrasenha){
+        return new Usuario(id, nombre, contrasenha);
+    }
+
+
     public String getId() {
         return id;
     }
