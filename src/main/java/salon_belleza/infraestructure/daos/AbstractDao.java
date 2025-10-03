@@ -1,5 +1,6 @@
 package salon_belleza.infraestructure.daos;
 
+import salon_belleza.exeptions.DatabaseException;
 import salon_belleza.infraestructure.daos.jdbcCommonTemplates.ArgumentPreparedStatementSetter;
 
 import javax.sql.DataSource;
@@ -7,7 +8,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public abstract class AbstractDao<T> {
@@ -39,7 +42,7 @@ public abstract class AbstractDao<T> {
         }
     }
 
-    protected final void exeuteDelete(String sql, Object... params)  {
+    protected final void executeDelete(String sql, Object... params)  {
         try (Connection conn = dataSource.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
             ArgumentPreparedStatementSetter.create(params).setValues(ps);
@@ -102,6 +105,23 @@ public abstract class AbstractDao<T> {
             throw new DatabaseException("Ocurrio un error con la obtencion de los datos " + e.getMessage());
         }
         return results;
+    }
+
+    protected final T executeFindByRole(String sql, Object... params){
+        try(Connection conn = dataSource.getConnection();
+        PreparedStatement ps = conn.prepareStatement(sql)){
+            ArgumentPreparedStatementSetter.create(params).setValues(ps);
+
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()){
+                return MapResultSetToEntity(rs);
+            }
+
+        }catch (SQLException e){
+            throw new DatabaseException("Ocurrio un error con la obtencion de los datos " + e.getMessage());
+        }
+
+        return null;
     }
 
     protected abstract T MapResultSetToEntity(ResultSet resultSet) throws SQLException;
