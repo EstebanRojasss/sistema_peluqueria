@@ -25,7 +25,7 @@ public abstract class AbstractDao<T> {
             ArgumentPreparedStatementSetter.create(params).setValues(ps);
             ps.executeUpdate();
         } catch (SQLException e) {
-            throw new DatabaseException("Ocurrio un error al guardar " + e);
+            throw new DatabaseException("Ocurrio un error al guardar, " + e.getMessage());
         }
     }
 
@@ -35,7 +35,7 @@ public abstract class AbstractDao<T> {
             ArgumentPreparedStatementSetter.create(params).setValues(ps);
             ps.executeUpdate();
         } catch (SQLException e) {
-            throw new DatabaseException("Ocurrio un error con la actualizacion de los datos " + e);
+            throw new DatabaseException("Ocurrio un error con la actualizacion de los datos " + e.getMessage());
         }
     }
 
@@ -80,7 +80,7 @@ public abstract class AbstractDao<T> {
                 results.add(MapResultSetToEntity(rs));
             }
         } catch (SQLException e) {
-            throw new DatabaseException("Ocurrio un error con la obtencion de los datos " + e);
+            throw new DatabaseException("Ocurrio un error con la obtencion de los datos " + e.getMessage());
         }
 
         return results;
@@ -99,7 +99,7 @@ public abstract class AbstractDao<T> {
             }
 
         }catch (SQLException e){
-            throw new DatabaseException("Ocurrio un error con la obtencion de los datos " + e);
+            throw new DatabaseException("Ocurrio un error con la obtencion de los datos " + e.getMessage());
         }
         return results;
     }
