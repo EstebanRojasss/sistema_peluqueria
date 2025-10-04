@@ -52,6 +52,12 @@ public class ClienteController {
         
     }
 
+    @FXML
+    private void guardarCliente() {
+        sava_changes_btn.setOnAction(saveUser -> clienteDao.saveClient(buildCliente()));
+    }
+
+
     public void generarReporte(ActionEvent actionEvent) {
     }
 
