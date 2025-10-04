@@ -73,7 +73,8 @@ public class ClienteController {
     public void paginaSiguiente(ActionEvent actionEvent) {
     }
 
-    public void cerrarDetalle() {
+    @FXML
+    private void cerrarDetalle() {
         panelAddCliente.setVisible(panelAddCliente.isVisible());
     }
 
