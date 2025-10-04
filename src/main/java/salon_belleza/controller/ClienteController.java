@@ -67,11 +67,10 @@ public class ClienteController {
     public void paginaSiguiente(ActionEvent actionEvent) {
     }
 
-    public void cerrarDetalle(ActionEvent actionEvent) {
+    public void cerrarDetalle() {
+        panelAddCliente.setVisible(panelAddCliente.isVisible());
     }
 
-    public void guardarCliente(ActionEvent actionEvent) {
-    }
 
     public void eliminarCliente(ActionEvent actionEvent) {
     }
