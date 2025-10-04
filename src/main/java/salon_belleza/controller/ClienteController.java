@@ -82,13 +82,7 @@ public class ClienteController {
 
 
 
-    private void disablePanelClienteAdd(){
-        add_cliente_btn.setOnAction(event -> {
-            if(panelAddCliente.isVisible()){
-                panelAddCliente.setVisible(false);
-            }else{
-                panelAddCliente.setVisible(true);
-            }
-        });
+    private void disablePanelClienteAdd() {
+        add_cliente_btn.setOnAction(event -> panelAddCliente.setVisible(!panelAddCliente.isVisible()));
     }
 }
