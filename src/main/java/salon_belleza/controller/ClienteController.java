@@ -79,7 +79,15 @@ public class ClienteController {
 
     }
 
-
+    private Cliente buildCliente() {
+        if (txtNombreAddCliente.getText().isEmpty()) {
+            throw new IllegalStateException("No se puede dejar el espacio de nombre en blanco");
+        }
+        String nombre = txtNombreAddCliente.getText();
+        String telefono = txtTelefonoAddCliente.getText();
+        String dni = txtDniAddCliente.getText();
+        return new Cliente(nombre, telefono, LocalDate.now(), dni);
+    }
 
 
     private void disablePanelClienteAdd() {
