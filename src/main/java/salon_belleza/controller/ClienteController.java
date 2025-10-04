@@ -79,4 +79,17 @@ public class ClienteController {
     public void nuevaCitaCliente(ActionEvent actionEvent) {
 
     }
+
+
+
+
+    private void disablePanelClienteAdd(){
+        add_cliente_btn.setOnAction(event -> {
+            if(panelAddCliente.isVisible()){
+                panelAddCliente.setVisible(false);
+            }else{
+                panelAddCliente.setVisible(true);
+            }
+        });
+    }
 }
