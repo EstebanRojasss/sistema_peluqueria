@@ -82,11 +82,15 @@ public class ClienteController {
     public void eliminarCliente(ActionEvent actionEvent) {
     }
 
-    public void initialize(){
-        colId.setCellValueFactory( new PropertyValueFactory<>("id"));
-        colNombre.setCellValueFactory( new PropertyValueFactory<>("nombre"));
-        colTelefono.setCellValueFactory( new PropertyValueFactory<>("telefono"));
-        colFechaRegistro.setCellValueFactory(new PropertyValueFactory<>("fecha_registro"));
+    public void initialize() {
+        clientesObs.setAll(clienteDao.findAllClients());
+        tblClientes.setItems(clientesObs);
+        
+        colId.setCellValueFactory(new PropertyValueFactory<>("id"));
+        colNombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
+        colTelefono.setCellValueFactory(new PropertyValueFactory<>("telefono"));
+        colFechaRegistro.setCellValueFactory(new PropertyValueFactory<>("fechaRegistro"));
+        colDni.setCellValueFactory(new PropertyValueFactory<>("dni"));
     }
 
 
