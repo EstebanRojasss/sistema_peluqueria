@@ -34,7 +34,9 @@ public class MainSystemController {
     @FXML
     private Label lblEstado;
 
-    private ClienteDaoImpl clienteDao;
+    private String currentViewId;
+    private final Map<String, Node> viewCache = new HashMap<>();
+
 
     @FXML
     public void cargarClientes() {
