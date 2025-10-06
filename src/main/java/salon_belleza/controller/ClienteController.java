@@ -108,8 +108,7 @@ public class ClienteController {
         return new Cliente(nombre, telefono, LocalDate.now(), dni);
     }
 
-
-    private void disablePanelClienteAdd() {
-        add_cliente_btn.setOnAction(event -> panelAddCliente.setVisible(!panelAddCliente.isVisible()));
+    private void mostrarListaClientesAlIniciar(){
+        clientesObs.setAll(clienteDao.findAllClients());
     }
 }
