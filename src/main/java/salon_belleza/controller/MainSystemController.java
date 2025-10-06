@@ -75,6 +75,38 @@ public class MainSystemController {
     public void cargarEmpleados(ActionEvent actionEvent) {
     }
 
+
+
+    private void cargarControlador(String viewPath, String cacheKey){
+        if(cacheKey.equals(currentViewId)){
+            return;
+        }
+
+        Node view;
+
+        if(viewCache.containsKey(cacheKey)){
+            view = viewCache.get(cacheKey);
+        }else{
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource(viewPath));
+
+                view = loader.load();
+
+
+                ClienteController controller = loader.getController();
+                controller.initClienteControllerDpendencies(clienteDao);
+
+                viewCache.put(cacheKey,view);
+
+            }catch (IOException e){
+                throw new ControllerViewExcepcion("Ocurrió un error al cargar el controlador. \n" + e.getMessage()+"\n"
+                        + e.getCause());
+            }
+        }
+        contenedorModulos.getChildren().setAll(view);
+        currentViewId = cacheKey;
+    }
+
 }
 
 
