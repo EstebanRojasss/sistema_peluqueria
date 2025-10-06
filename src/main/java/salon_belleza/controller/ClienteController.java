@@ -91,6 +91,9 @@ public class ClienteController {
         colTelefono.setCellValueFactory(new PropertyValueFactory<>("telefono"));
         colFechaRegistro.setCellValueFactory(new PropertyValueFactory<>("fechaRegistro"));
         colDni.setCellValueFactory(new PropertyValueFactory<>("dni"));
+
+        clientesObs = FXCollections.observableArrayList();
+        tblClientes.setItems(clientesObs);
     }
 
 
