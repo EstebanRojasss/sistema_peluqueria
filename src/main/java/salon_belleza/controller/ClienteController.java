@@ -114,4 +114,23 @@ public class ClienteController {
     private void mostrarListaClientesAlIniciar(){
         clientesObs.setAll(clienteDao.findAllClients());
     }
+
+    private void seleccionarCliente(){
+        limpiarCamposDetalleCliente();
+        Cliente cliente = tblClientes.getSelectionModel().getSelectedItem();
+        if(txtNombreAddCliente.getText().isEmpty()
+                && txtTelefonoAddCliente.getText().isEmpty()
+                && txtDniAddCliente.getText().isEmpty()){
+            txtNombreAddCliente.setText(cliente.getNombre());
+            txtTelefonoAddCliente.setText(cliente.getTelefono());
+            txtDniAddCliente.setText(cliente.getDni());
+        }
+    }
+
+
+    private void limpiarCamposDetalleCliente(){
+        txtNombreAddCliente.setText("");
+        txtTelefonoAddCliente.setText("");
+        txtDniAddCliente.setText("");
+    }
 }
