@@ -38,12 +38,9 @@ public class MainSystemController {
 
     @FXML
     public void cargarClientes() {
-        try {
-            BorderPane view =  FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/cliente-view.fxml")));
-            contenedorModulos.getChildren().setAll(view);
-        } catch (Exception e) {
-            System.out.println("Ocurrió un error al cargar el módulo." + e.getMessage());
-        }
+        String pathViewClientes = "/cliente-view.fxml";
+        String cacheKey = "clientes";
+        cargarControlador(pathViewClientes, cacheKey);
     }
 
     public void abrirCaja() {
