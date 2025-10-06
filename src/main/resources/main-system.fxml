@@ -32,17 +32,17 @@
       <VBox spacing="10" style="-fx-background-color: #f4f4f4; -fx-padding: 15;">
          <Button onAction="#cargarDashboard" style="-fx-font-size: 14; -fx-pref-width: 150;-fx-font-family: 'DejaVu Sans Mono'" text="📊 Principal" />
 
-         <Button onAction="#cargarClientes" style="-fx-font-size: 14; -fx-pref-width: 150;" text="👥 Clientes" />
+         <Button onAction="#cargarClientes" style="-fx-font-size: 14; -fx-pref-width: 150;-fx-font-family: 'DejaVu Sans Mono'" text="👥 Clientes" />
 
-         <Button onAction="#cargarCitas" style="-fx-font-size: 14; -fx-pref-width: 150;" text="📅 Citas" />
+         <Button onAction="#cargarCitas" style="-fx-font-size: 14; -fx-pref-width: 150;-fx-font-family: 'DejaVu Sans Mono'" text="📅 Citas" />
 
-         <Button onAction="#cargarServicios" style="-fx-font-size: 14; -fx-pref-width: 150;" text="💇 Servicios" />
+         <Button onAction="#cargarServicios" style="-fx-font-size: 14; -fx-pref-width: 150;-fx-font-family: 'DejaVu Sans Mono'" text="💇 Servicios" />
 
-         <Button onAction="#cargarInventario" style="-fx-font-size: 14; -fx-pref-width: 150;" text="📦 Inventario" />
+         <Button onAction="#cargarInventario" style="-fx-font-size: 14; -fx-pref-width: 150;-fx-font-family: 'DejaVu Sans Mono'" text="📦 Inventario" />
 
-         <Button onAction="#cargarVentas" style="-fx-font-size: 14; -fx-pref-width: 150;" text="💰 Ventas" />
+         <Button onAction="#cargarVentas" style="-fx-font-size: 14; -fx-pref-width: 150;-fx-font-family: 'DejaVu Sans Mono'" text="💰 Ventas" />
 
-         <Button onAction="#cargarEmpleados" style="-fx-font-size: 14; -fx-pref-width: 150;" text="‍💼 Empleados" />
+         <Button onAction="#cargarEmpleados" style="-fx-font-size: 14; -fx-pref-width: 150;-fx-font-family: 'DejaVu Sans Mono'" text="‍💼 Empleados" />
       </VBox>
    </left>
 
