@@ -30,7 +30,7 @@
 
    <left>
       <VBox spacing="10" style="-fx-background-color: #f4f4f4; -fx-padding: 15;">
-         <Button onAction="#cargarDashboard" style="-fx-font-size: 14; -fx-pref-width: 150;-fx-font-family: 'DejaVu Sans Mono'" text="📊 Panel Principal" />
+         <Button onAction="#cargarDashboard" style="-fx-font-size: 14; -fx-pref-width: 150;-fx-font-family: 'DejaVu Sans Mono'" text="📊 Principal" />
 
          <Button onAction="#cargarClientes" style="-fx-font-size: 14; -fx-pref-width: 150;" text="👥 Clientes" />
 
