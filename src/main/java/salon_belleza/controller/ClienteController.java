@@ -78,6 +78,15 @@ public class ClienteController {
         panelAddCliente.setVisible(panelAddCliente.isVisible());
     }
 
+    @FXML
+    private void eliminarCliente() {
+        Cliente cliente = tblClientes.getSelectionModel().getSelectedItem();
+        if(cliente != null){
+            clienteDao.deleteClienteByName(cliente);
+            clientesObs.remove(cliente);
+            tblClientes.setItems(clientesObs);
+        }
+    }
 
     public void eliminarCliente(ActionEvent actionEvent) {
     }
