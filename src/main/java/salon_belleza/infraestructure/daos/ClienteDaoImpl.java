@@ -43,13 +43,13 @@ public class ClienteDaoImpl extends AbstractDao<Cliente> implements ClienteDao {
     @Override
     public void deleteClienteById(Cliente cliente) {
         String sql = "DELETE FROM cliente WHERE id_cliente = ?";
-        executeDeleteById(sql, id);
+        executeDelete(sql, cliente.getId());
     }
 
     @Override
     public void deleteClienteByName(Cliente cliente) {
         String sql = "DELETE FROM cliente WHERE nombre = ?";
-        executeDelete(sql, nombre);
+        executeDelete(sql, cliente.getNombre());
     }
 
     @Override
