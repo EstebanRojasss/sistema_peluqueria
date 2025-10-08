@@ -30,13 +30,13 @@ public class ClienteDaoImpl extends AbstractDao<Cliente> implements ClienteDao {
 
     @Override
     public Cliente findClientByDni(String dni) {
-            String sql = "SELECT nombre, telefono, fecha_registro, dni FROM cliente c WHERE c.dni = ?";
-            return executeFindByID(sql, dni); // El metodo findById está siendo reutilizado para obtener un usuario por su DNI
+            String sql = "SELECT id_cliente,nombre, telefono, fecha_registro, dni FROM cliente c WHERE c.dni = ?";
+            return executeFindByID(sql, dni); // El metodo findById esta siendo reutilizado para obtener un usuario por su DNI
     }
 
     @Override
     public Cliente findClientById(String id) {
-            String sql = "SELECT nombre,telefono,fecha_registro,dni FROM cliente c WHERE c.id = ?";
+            String sql = "SELECT id_cliente,nombre,telefono,fecha_registro,dni FROM cliente c WHERE c.id_cliente = ?";
             return executeFindByID(sql, id);
     }
 
