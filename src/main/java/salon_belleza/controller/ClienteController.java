@@ -88,7 +88,18 @@ public class ClienteController {
         }
     }
 
-    public void eliminarCliente(ActionEvent actionEvent) {
+    @FXML
+    private void actualizarCliente() {
+        Cliente cliente = tblClientes.getSelectionModel().getSelectedItem();
+        if (cliente != null) {
+            cliente.setNombre(txtNombreAddCliente.getText());
+            cliente.setTelefono(txtTelefonoAddCliente.getText());
+            cliente.setDni(txtDniAddCliente.getText());
+
+            clienteDao.updateClienteByID(cliente);
+            tblClientes.setItems(clientesObs);
+            tblClientes.refresh();
+        }
     }
 
     public void initialize() {

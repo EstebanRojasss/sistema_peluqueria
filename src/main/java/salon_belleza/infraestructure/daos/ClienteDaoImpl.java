@@ -4,9 +4,9 @@ import salon_belleza.domain.dao.ClienteDao;
 import salon_belleza.domain.entities.Cliente;
 
 import javax.sql.DataSource;
-import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Set;
 
 public class ClienteDaoImpl extends AbstractDao<Cliente> implements ClienteDao {
@@ -19,12 +19,12 @@ public class ClienteDaoImpl extends AbstractDao<Cliente> implements ClienteDao {
     @Override
     public void saveClient(Cliente cliente) {
             String sql = "INSERT INTO cliente(id_cliente,nombre,telefono,fecha_registro,dni) VALUES(?,?,?,?,?)";
-            executeSave(sql, cliente.getId(),cliente.getNombre(), cliente.getTelefono(), cliente.getFecha_regsitro(), cliente.getDni());
+            executeSave(sql, cliente.getId(),cliente.getNombre(), cliente.getTelefono(), cliente.getFechaRegistro(), cliente.getDni());
     }
 
     @Override
     public List<Cliente> findClientByName(String nombre) {
-            String sql = "SELECT nombre, telefono, fecha_registro, dni FROM cliente c WHERE c.nombre = ?";
+            String sql = "SELECT id_cliente,nombre, telefono, fecha_registro, dni FROM cliente c WHERE c.nombre = ?";
             return executeFindByName(sql, nombre);
     }
 
@@ -53,8 +53,9 @@ public class ClienteDaoImpl extends AbstractDao<Cliente> implements ClienteDao {
     }
 
     @Override
-    public void deleteClienteByDni(String dni) {
-
+    public void deleteClienteByDni(Cliente cliente) {
+        String sql = "DELETE FROM cliente c WHERE c.dni = ?";
+        executeDelete(sql, cliente.getDni());
     }
 
     @Override
