@@ -103,6 +103,7 @@ public class ClienteController {
 
         clientesObs = FXCollections.observableArrayList();
         tblClientes.setItems(clientesObs);
+        tblClientes.setOnMousePressed( mouseEvent -> seleccionarCliente());
     }
 
 
