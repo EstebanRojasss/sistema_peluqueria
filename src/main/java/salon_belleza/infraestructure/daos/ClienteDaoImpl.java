@@ -81,7 +81,7 @@ public class ClienteDaoImpl extends AbstractDao<Cliente> implements ClienteDao {
                  nombre = ?,
                  telefono = ?,
                  fecha_registro = ?,
-                 dni = ? WHERE nombre = ?
+                 dni = ? WHERE id_cliente = ?
                 \s""";
         executeUpdate(sql,
                 cliente.getNombre(),
