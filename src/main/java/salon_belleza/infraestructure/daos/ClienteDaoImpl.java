@@ -41,13 +41,13 @@ public class ClienteDaoImpl extends AbstractDao<Cliente> implements ClienteDao {
     }
 
     @Override
-    public void deleteClienteById(String id) {
+    public void deleteClienteById(Cliente cliente) {
         String sql = "DELETE FROM cliente WHERE id_cliente = ?";
         executeDeleteById(sql, id);
     }
 
     @Override
-    public void deleteClienteByName(String nombre) {
+    public void deleteClienteByName(Cliente cliente) {
         String sql = "DELETE FROM cliente WHERE nombre = ?";
         executeDelete(sql, nombre);
     }
@@ -58,7 +58,7 @@ public class ClienteDaoImpl extends AbstractDao<Cliente> implements ClienteDao {
     }
 
     @Override
-    public void updateClienteByName(String nombre, Cliente cliente) {
+    public void updateClienteByName(Cliente cliente) {
         String sql = """
                  UPDATE cliente SET\s
                  nombre = ?,
