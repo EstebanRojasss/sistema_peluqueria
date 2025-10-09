@@ -49,6 +49,19 @@ public class ValidatorBuilder {
         return this;
     }
 
+    public ValidatorBuilder validateTooLongProperty(String warn){
+        validator.createCheck()
+                .dependsOn(key, stringProperty)
+                .withMethod(c ->{
+                    String field = stringProperty.get();
+                    if(field.length() > 10){
+                        c.warn(warn);
+                    }
+                })
+                .decorates(node);
+        return this;
+    }
+
     public void build(){
 
     }
