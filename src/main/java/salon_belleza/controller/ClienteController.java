@@ -87,7 +87,6 @@ public class ClienteController {
         if(cliente != null){
             clienteDao.deleteClienteByName(cliente);
             clientesObs.remove(cliente);
-            tblClientes.setItems(clientesObs);
         }
     }
 
@@ -100,7 +99,6 @@ public class ClienteController {
             cliente.setDni(txtDniAddCliente.getText());
 
             clienteDao.updateClienteByID(cliente);
-            tblClientes.setItems(clientesObs);
             tblClientes.refresh();
         }
     }
