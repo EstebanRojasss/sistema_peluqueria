@@ -44,7 +44,10 @@ public class ClienteController {
     @FXML
     private TableColumn colTotalVisitas;
     @FXML
-    private TableColumn colEstado;
+    private void limpiarFiltros() {
+        txtBuscar.setText("");
+    }
+
     @FXML
     private TableColumn colAcciones;
 
