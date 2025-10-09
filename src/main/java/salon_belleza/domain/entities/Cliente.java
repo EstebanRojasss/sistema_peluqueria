@@ -8,7 +8,7 @@ public class Cliente {
     private final String id;
     private String nombre;
     private String telefono;
-    private LocalDate fecha_regsitro;
+    private LocalDate fechaRegistro;
     private String dni;
 
 
@@ -18,7 +18,7 @@ public class Cliente {
         this.nombre = nombre;
         this.id = uuid.toString();
         this.telefono = telefono;
-        this.fecha_regsitro = fecha_registro;
+        this.fechaRegistro = fecha_registro;
         this.dni = dni;
     }
 
@@ -34,8 +34,8 @@ public class Cliente {
         this.dni = dni;
     }
 
-    public void setFecha_regsitro(LocalDate fecha_regsitro) {
-        this.fecha_regsitro = fecha_regsitro;
+    public void setFechaRegistro(LocalDate fechaRegistro) {
+        this.fechaRegistro = fechaRegistro;
     }
 
     public String getNombre() {
@@ -50,8 +50,8 @@ public class Cliente {
         return dni;
     }
 
-    public LocalDate getFecha_regsitro() {
-        return fecha_regsitro;
+    public LocalDate getFechaRegistro() {
+        return fechaRegistro;
     }
 
     public String getId(){
