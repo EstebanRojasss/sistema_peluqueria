@@ -116,8 +116,22 @@ public class ClienteController {
         colDni.setCellValueFactory(new PropertyValueFactory<>("dni"));
 
         clientesObs = FXCollections.observableArrayList();
-        tblClientes.setItems(clientesObs);
-        tblClientes.setOnMousePressed( mouseEvent -> seleccionarCliente());
+        clientesFiltered = new FilteredList<>(clientesObs, p -> true);
+
+        tblClientes.setItems(clientesFiltered);
+
+        txtBuscar.textProperty().addListener((obs, oldValue, newValue) -> {
+            clientesFiltered.setPredicate(cliente -> {
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+                String filtro = newValue.toLowerCase();
+                return cliente.getNombre().toLowerCase().contains(filtro)
+                        || cliente.getTelefono().toLowerCase().contains(filtro)
+                        || cliente.getDni().toLowerCase().contains(filtro);
+            });
+        });
+        tblClientes.setOnMousePressed(mouseEvent -> seleccionarCliente());
     }
 
 
