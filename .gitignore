@@ -11,6 +11,7 @@ target/
 *.iws
 *.iml
 *.ipr
+src/main/java/salon_belleza/config/DatabasePool.java
 
 ### Eclipse ###
 .apt_generated
