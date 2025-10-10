@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<StackPane style="-fx-background-color: linear-gradient(to bottom right, #f9f8f5, #e6b4e1);" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="salon_belleza.controller.LoginController">
+<StackPane style="-fx-background-color: linear-gradient(to bottom right, #e9a3cd, #ffffff);" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="salon_belleza.controller.LoginController">
 
     <VBox alignment="CENTER" spacing="30" style="-fx-padding: 40;">
 
@@ -38,8 +38,6 @@
             </VBox>
 
                   <Button fx:id="btnLogin" defaultButton="true" onAction="#iniciarSesion" style="-fx-background-color: #ffffff; -fx-text-fill: black; -fx-font-weight: bold; -fx-border-color: #6e6e6e;-fx-pref-height: 45; -fx-border-radius: 5px; -fx-font-size: 14px;-fx-cursor: hand" text="Acceder al Sistema" />
-
-            <Label fx:id="lblMensaje" style="-fx-text-fill: #e74c3c; -fx-font-size: 12px; -fx-wrap-text: true;" visible="false" />
 
         </VBox>
 
