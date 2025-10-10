@@ -1,14 +1,7 @@
 package salon_belleza.utils;
 
-import javafx.beans.Observable;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-import javafx.beans.value.ObservableStringValue;
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.control.Button;
-import javafx.scene.layout.Pane;
-import net.synedra.validatorfx.TooltipWrapper;
 import net.synedra.validatorfx.Validator;
 
 public class ValidatorBuilder {
