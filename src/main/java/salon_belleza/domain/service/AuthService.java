@@ -4,6 +4,5 @@ public interface AuthService {
 
     String encryptPasswd(String passwd);
 
-    boolean checkPasswd(String textPlane, String passwd);
-
+    boolean checkPasswd(String nombre, String contrasenha);
 }
