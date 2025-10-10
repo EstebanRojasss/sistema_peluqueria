@@ -3,32 +3,27 @@ package salon_belleza.controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import salon_belleza.config.DatabasePool;
+import salon_belleza.exeptions.ControllerViewExcepcion;
 import salon_belleza.infraestructure.daos.ClienteDaoImpl;
 
-import java.util.Objects;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+
+
 
 public class MainSystemController {
 
-    public MainSystemController() {
+    private ClienteDaoImpl clienteDao;
+
+    public void initDependencias() {
         this.clienteDao = new ClienteDaoImpl(DatabasePool.getDatasource());
     }
 
-    @FXML
-    private TableView listClients;
-    @FXML
-    private TableColumn dni_col;
-    @FXML
-    private TableColumn nombre_col;
-    @FXML
-    private TableColumn telefono_col;
-    @FXML
-    private TableColumn fecha_registro_col;
     @FXML
     private StackPane contenedorModulos;
     @FXML
@@ -68,7 +63,7 @@ public class MainSystemController {
     public void cargarInventario(ActionEvent actionEvent) {
     }
 
-    public void cargarVentas(ActionEvent actionEvent) {
+    public void cargarPagos(ActionEvent actionEvent) {
     }
 
     public void cargarEmpleados(ActionEvent actionEvent) {
