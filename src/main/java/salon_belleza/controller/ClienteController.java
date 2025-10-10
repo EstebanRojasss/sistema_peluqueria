@@ -1,12 +1,36 @@
 package salon_belleza.controller;
 
+import javafx.beans.Observable;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.collections.ObservableSet;
+import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
+import net.synedra.validatorfx.Validator;
+import salon_belleza.domain.entities.Cliente;
+import salon_belleza.infraestructure.daos.ClienteDaoImpl;
+import salon_belleza.utils.ValidatorBuilder;
 
-public class ClienteController {
+import java.time.LocalDate;
 
+public class ClienteController extends BaseController{
+
+    private ClienteDaoImpl clienteDao;
+    private ObservableList<Cliente> clientesObs;
+    private FilteredList<Cliente> clientesFiltered;
+
+    public void initClienteControllerDpendencies(ClienteDaoImpl clienteDao) {
+        this.clienteDao = clienteDao;
+        mostrarListaClientesAlIniciar();
+    }
+
+
+    @FXML
+    private TextField txtDniAddCliente;
     @FXML
     private TextField txtBuscar;
     @FXML
@@ -14,77 +38,72 @@ public class ClienteController {
     @FXML
     private Label lblContador;
     @FXML
-    private TableView tblClientes;
-    @FXML
     private Label lblPagina;
     @FXML
-    private VBox panelDetalle;
+    private TextField txtNombreAddCliente;
     @FXML
-    private TextField txtNombre;
+    private TextField txtTelefonoAddCliente;
     @FXML
-    private TextField txtTelefono;
+    private TableView<Cliente> tblClientes;
     @FXML
-    private TextField txtEmail;
+    private TableColumn<Cliente, String> colId;
     @FXML
-    private DatePicker dpFechaNacimiento;
+    private TableColumn<Cliente, String> colNombre;
     @FXML
-    private TextArea txtNotas;
+    private TableColumn<Cliente, String> colTelefono;
     @FXML
-    private TableColumn colId;
+    private TableColumn<Cliente, LocalDate> colFechaRegistro;
     @FXML
-    private TableColumn colNombre;
+    private TableColumn<Cliente, String> colDni;
     @FXML
-    private TableColumn colTelefono;
+    private VBox panelAddCliente;
+
     @FXML
-    private TableColumn colEmail;
+    private void nuevoCliente() {
+        panelAddCliente.setVisible(!panelAddCliente.isVisible());
+    }
+
     @FXML
-    private TableColumn colFechaRegistro;
+    private void guardarCliente() {
+        if(!validator.containsErrors()){
+            Cliente cliente = buildCliente();
+            clienteDao.saveClient(cliente);
+            clientesObs.add(cliente);
+            tblClientes.refresh();
+        }
+    }
+
     @FXML
-    private TableColumn colUltimaVisita;
+    private void generarReporte(ActionEvent actionEvent) {
+    }
+
     @FXML
-    private TableColumn colTotalVisitas;
+    private void buscarClientes() {
+
+    }
+
     @FXML
     private void limpiarFiltros() {
         txtBuscar.setText("");
     }
 
     @FXML
-    private TableColumn colAcciones;
-
-    public void nuevoCliente(ActionEvent actionEvent) {
-        
+    private void paginaAnterior(ActionEvent actionEvent) {
     }
 
     @FXML
-    private void guardarCliente() {
-        sava_changes_btn.setOnAction(saveUser -> clienteDao.saveClient(buildCliente()));
-    }
-
-
-    public void generarReporte(ActionEvent actionEvent) {
-    }
-
-    public void buscarClientes(ActionEvent actionEvent) {
-    }
-
-    public void limpiarFiltros(ActionEvent actionEvent) {
-    }
-
-    public void paginaAnterior(ActionEvent actionEvent) {
-    }
-
-    public void paginaSiguiente(ActionEvent actionEvent) {
+    private void paginaSiguiente(ActionEvent actionEvent) {
     }
 
     @FXML
     private void cerrarDetalle() {
-        panelAddCliente.setVisible(panelAddCliente.isVisible());
+        panelAddCliente.setVisible(!panelAddCliente.isVisible());
     }
 
     @FXML
     private void eliminarCliente() {
         Cliente cliente = tblClientes.getSelectionModel().getSelectedItem();
-        if(cliente != null){
+        if (cliente != null && !validator.containsErrors()) {
             clienteDao.deleteClienteByName(cliente);
             clientesObs.remove(cliente);
         }
@@ -93,7 +112,7 @@ public class ClienteController {
     @FXML
     private void actualizarCliente() {
         Cliente cliente = tblClientes.getSelectionModel().getSelectedItem();
-        if (cliente != null) {
+        if (cliente != null && !validator.containsErrors()) {
             cliente.setNombre(txtNombreAddCliente.getText());
             cliente.setTelefono(txtTelefonoAddCliente.getText());
             cliente.setDni(txtDniAddCliente.getText());
@@ -104,9 +123,6 @@ public class ClienteController {
     }
 
     public void initialize() {
-        clientesObs.setAll(clienteDao.findAllClients());
-        tblClientes.setItems(clientesObs);
-        
         colId.setCellValueFactory(new PropertyValueFactory<>("id"));
         colNombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
         colTelefono.setCellValueFactory(new PropertyValueFactory<>("telefono"));
@@ -129,14 +145,9 @@ public class ClienteController {
                         || cliente.getDni().toLowerCase().contains(filtro);
             });
         });
+
         tblClientes.setOnMousePressed(mouseEvent -> seleccionarCliente());
     }
-
-
-    private void mostrarListaClientes(){
-
-    }
-
     private Cliente buildCliente() {
         if (txtNombreAddCliente.getText().isEmpty()) {
             throw new IllegalStateException("No se puede dejar el espacio de nombre en blanco");
@@ -147,16 +158,16 @@ public class ClienteController {
         return new Cliente(nombre, telefono, LocalDate.now(), dni);
     }
 
-    private void mostrarListaClientesAlIniciar(){
+    private void mostrarListaClientesAlIniciar() {
         clientesObs.setAll(clienteDao.findAllClients());
     }
 
-    private void seleccionarCliente(){
+    private void seleccionarCliente() {
         limpiarCamposDetalleCliente();
         Cliente cliente = tblClientes.getSelectionModel().getSelectedItem();
-        if(txtNombreAddCliente.getText().isEmpty()
+        if (txtNombreAddCliente.getText().isEmpty()
                 && txtTelefonoAddCliente.getText().isEmpty()
-                && txtDniAddCliente.getText().isEmpty()){
+                && txtDniAddCliente.getText().isEmpty()) {
             txtNombreAddCliente.setText(cliente.getNombre());
             txtTelefonoAddCliente.setText(cliente.getTelefono());
             txtDniAddCliente.setText(cliente.getDni());
@@ -164,9 +175,24 @@ public class ClienteController {
     }
 
 
-    private void limpiarCamposDetalleCliente(){
+    private void limpiarCamposDetalleCliente() {
         txtNombreAddCliente.setText("");
         txtTelefonoAddCliente.setText("");
         txtDniAddCliente.setText("");
+    }
+
+    @Override
+    protected void setUpValidations(Validator validator) {
+        ValidatorBuilder.create(validator)
+                .field("nombreCliente", txtNombreAddCliente.textProperty())
+                .decorates(txtNombreAddCliente)
+                .validateNoEmpty("Debe ingresar el nombre.")
+                .build();
+
+        ValidatorBuilder.create(validator)
+                .field("dni", txtDniAddCliente.textProperty())
+                .decorates(txtDniAddCliente)
+                .validateTooLongProperty("El numero de cedula debe tener 10 digitos")
+                .build();
     }
 }
