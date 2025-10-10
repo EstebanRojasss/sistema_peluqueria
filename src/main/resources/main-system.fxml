@@ -40,7 +40,7 @@
 
          <Button onAction="#cargarInventario" style="-fx-font-size: 14; -fx-pref-width: 150;-fx-font-family: 'DejaVu Sans Mono'" text="📦 Inventario" />
 
-         <Button onAction="#cargarVentas" style="-fx-font-size: 14; -fx-pref-width: 150;-fx-font-family: 'DejaVu Sans Mono'" text="💰 Ventas" />
+         <Button onAction="#cargarPagos" style="-fx-font-size: 14; -fx-pref-width: 150;-fx-font-family: 'DejaVu Sans Mono'" text="💰 Pagos" />
 
          <Button onAction="#cargarEmpleados" style="-fx-font-size: 14; -fx-pref-width: 150;-fx-font-family: 'DejaVu Sans Mono'" text="‍💼 Empleados" />
       </VBox>
